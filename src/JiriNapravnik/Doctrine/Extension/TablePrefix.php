@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Doctrine\Extensions;
+namespace JiriNapravnik\Doctrine\Extension;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
