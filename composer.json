@@ -1,0 +1,20 @@
+{
+    "name": "jirinapravnik/common",
+    "description": "Common classes",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jiří Nápravník",
+            "email": "jiri.napravnik@gmail.com",
+            "homepage": "http://jirinapravnik.cz/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "JiriNapravnik": ""
+        }
+    }
+}
