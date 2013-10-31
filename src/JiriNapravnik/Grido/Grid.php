@@ -11,7 +11,7 @@ use Nette\ComponentModel\IContainer;
  * @author Jiří Nápravník (http://jirinapravnik.cz)
  * @copyright Copyright (c) 2013, Jiří Nápravník
  */
-class Grid extends Grid
+class Grid extends \Grido\Grid
 {
 
 	public function __construct(IContainer $parent = NULL, $name = NULL)
