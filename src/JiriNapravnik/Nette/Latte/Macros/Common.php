@@ -20,6 +20,7 @@ class Common extends MacroSet
 	{
 		$set = new static($compiler);
 		$set->addMacro('confirm', NULL, NULL, array($set, 'macroConfirm'));
+		$set->addMacro('confirmModal', NULL, NULL, array($set, 'macroConfirmModal'));
 	}
 
 	/**
@@ -30,4 +31,11 @@ class Common extends MacroSet
 		return $writer->write('echo \'data-confirm="\' . %escape("' . $node->args . '") . \'"\' ');
 	}
 
+	/**
+	 * n:confirmModal="..."
+	 */
+	public function macroConfirmModal(MacroNode $node, PhpWriter $writer)
+	{
+		return $writer->write('echo \'data-confirm="modal" data-confirm-text="\' . %escape("' . $node->args . '") . \'"\' ');
+	}
 }

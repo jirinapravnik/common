@@ -12,19 +12,27 @@ class RenameWithDirs
 
 	private $newFileName;
 
-	public function __construct($mainDirectory, $originalName, $structure = true, $fixNewName = null)
+	public function __construct($mainDirectory, $originalName, $structure = TRUE, $fixNewName = null)
 	{
 		if (!(is_string($originalName) && strlen($originalName) > 0)) {
 			return;
 		}
+		
+		if(!is_dir($mainDirectory)){
+			mkdir($mainDirectory, 0777, TRUE);
+		}
+		
+		if(!is_writable($mainDirectory)){
+			chmod($mainDirectory, 0777);
+		}
 
 		$actDir = $mainDirectory;
 
-		if ($structure === true) {
+		if ($structure === TRUE) {
 			$date = date('Y/m/d');
 
 			if (!is_dir($actDir = $mainDirectory . $date)) {
-				mkdir($actDir, 0777, true);
+				mkdir($actDir, 0777, TRUE);
 				chmod($actDir, 0777);
 			}
 		}
@@ -33,7 +41,7 @@ class RenameWithDirs
 		$expl = explode('.', $explOriginal[count($explOriginal) - 1]);
 
 		$fileName = '';
-		if (is_null($fixNewName)) {
+		if (is_NULL($fixNewName)) {
 			for ($i = 0; $i < count($expl) - 1; $i++) {
 				$fileName .= $expl[$i] . '-';
 			}
