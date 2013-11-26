@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Doctrine\Extension;
+namespace JiriNapravnik\Doctrine\EventSubscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
  * @author Jiří Nápravník (http://jirinapravnik.cz)
  * @copyright Copyright (c) 2013, Jiří Nápravník
  */
-class TablePrefix implements EventSubscriber
+class TablePrefixSubscriber implements EventSubscriber
 {
 
 	protected $prefix = '';
