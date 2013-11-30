@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Common;
+namespace JiriNapravnik\Filter;
 
 /**
  * class for uploading files, making dirs etc.

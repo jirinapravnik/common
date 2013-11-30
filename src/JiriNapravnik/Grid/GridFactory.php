@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Grido;
+namespace JiriNapravnik\Grid;
 
 use Grido\Components\Filters\Filter;
 use Grido\Grid;

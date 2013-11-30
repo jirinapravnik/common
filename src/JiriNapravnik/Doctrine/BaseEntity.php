@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Common;
+namespace JiriNapravnik\Doctrine;
 
 use Zend\Stdlib\Hydrator;
 

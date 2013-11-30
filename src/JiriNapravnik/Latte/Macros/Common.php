@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Nette\Latte\Macros;
+namespace JiriNapravnik\Latte\Macros;
 
 use Nette\Latte\Compiler;
 use Nette\Latte\MacroNode;

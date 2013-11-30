@@ -13,7 +13,7 @@
  * @package    Nette Extras
  */
 
-namespace JiriNapravnik\Nette\Paginator;
+namespace JiriNapravnik\Component\VisualPaginator;
 
 use Nette\Utils\Paginator;
 

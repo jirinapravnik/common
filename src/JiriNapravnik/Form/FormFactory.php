@@ -8,12 +8,12 @@
  * 
  */
 
-namespace JiriNapravnik\Nette;
+namespace JiriNapravnik\Form;
 
 use Kdyby\BootstrapFormRenderer\BootstrapRenderer;
 use Nette\Application\UI\Form;
 
-class BaseFormFactory
+class FormFactory
 {
 
 	public function create()
