@@ -15,6 +15,9 @@
     "autoload": {
         "psr-0": {
             "JiriNapravnik\\": "src/"
-        }
+        },
+		"classmap": [
+			"src/JiriNapravnik/exceptions.php"
+		]
     }
 }
