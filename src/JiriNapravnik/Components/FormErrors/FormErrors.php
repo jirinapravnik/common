@@ -6,7 +6,7 @@
  * @author Jiří Nápravník (jirinapravnik.cz), Enbros.cz
  */
 
-namespace JiriNapravnik\Component\FormErrors;
+namespace JiriNapravnik\Components\FormErrors;
 
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;

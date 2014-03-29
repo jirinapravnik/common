@@ -27,16 +27,16 @@ class GridFactory
 		return $grid;
 	}
 
-	public function bootstrapModal($row, $element)
+	public function bootstrapModal($row, $htmlElement)
 	{
-		$element->attrs['data'] = array(
+		$htmlElement->attrs['data'] = array(
 			'confirm' => 'modal',
-			'confirm-text' => $element->attrs['data']['grido-confirm'],
+			'confirm-text' => $htmlElement->attrs['data']['grido-confirm'],
 			'ajax' => 'on',
 		);
-		unset($element->attrs['data']['grido-confirm']);
+		unset($htmlElement->attrs['data']['grido-confirm']);
 		
-		return $element;
+		return $htmlElement;
 	}
 
 }

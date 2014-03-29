@@ -45,13 +45,16 @@ class RootSequenceListener
 	/**
 	 * @ORM\PreUpdate
 	 */
-	public function preUpdate(\CategoryModule\Model\Entity\Category $item, PreUpdateEventArgs $event)
+	public function preUpdate($item, PreUpdateEventArgs $event)
 	{
 		if ($item->getLevel() > 0) {
 			$item->setRootSequence(NULL);
 		} elseif ($event->hasChangedField('parent') && is_null($event->getNewValue('parent')) && !is_null($event->getOldValue('parent'))) {
 			$this->setMaxRootSequence($item, $event);
 		} else {
+			if(!$event->hasChangedField('rootSequence')){
+				return;
+			}
 			$oldSequence = $event->getOldValue('rootSequence');
 			$newSequence = $event->getNewValue('rootSequence');
 

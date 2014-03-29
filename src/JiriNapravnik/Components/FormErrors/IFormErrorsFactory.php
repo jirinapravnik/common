@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Component\FormErrors;
+namespace JiriNapravnik\Components\FormErrors;
 
 interface IFormErrorsFactory
 {

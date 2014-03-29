@@ -13,7 +13,7 @@
  * @package    Nette Extras
  */
 
-namespace JiriNapravnik\Component\VisualPaginator;
+namespace JiriNapravnik\Components\VisualPaginator;
 
 use Nette\Utils\Paginator;
 
@@ -32,9 +32,16 @@ class VisualPaginator extends \Nette\Application\UI\Control
 
     /** @persistent */
     public $page = 1;
+	
+	public $onShowPage = array();
 
+	public function __construct()
+	{
+		;
+	}
+	
     /**
-     * @return Nette\Utils\Paginator
+     * @return \Nette\Utils\Paginator
      */
     public function getPaginator()
     {
@@ -45,6 +52,10 @@ class VisualPaginator extends \Nette\Application\UI\Control
         return $this->paginator;
     }
 
+	public function handleShowPage($page){
+		$this->onShowPage($this, $page);
+	}
+	
     /**
      * Renders paginator.
      * @param array $options
@@ -53,7 +64,7 @@ class VisualPaginator extends \Nette\Application\UI\Control
     public function render($options = NULL)
     {
         $paginator = $this->getPaginator();
-
+		
         if (NULL !== $options) {
             $paginator->setItemCount($options['count']);
             $paginator->setItemsPerPage($options['pageSize']);
@@ -76,6 +87,7 @@ class VisualPaginator extends \Nette\Application\UI\Control
 
         $this->template->steps = $steps;
         $this->template->paginator = $paginator;
+		$this->template->isThereEvents = (count($this->onShowPage) > 0) ? TRUE : FALSE;
 
         $this->template->setFile(__DIR__ . '/visualPaginator.latte');
         $this->template->render();

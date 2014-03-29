@@ -29,7 +29,7 @@ class RenameWithDirs
 		$actDir = $mainDirectory;
 
 		if ($structure === TRUE) {
-			$date = date('Y/m/d');
+			$date = date('Y/m/d/');
 
 			if (!is_dir($actDir = $mainDirectory . $date)) {
 				mkdir($actDir, 0777, TRUE);

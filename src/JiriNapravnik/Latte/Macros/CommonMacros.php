@@ -13,7 +13,7 @@ use Nette\Latte\PhpWriter;
  * @copyright Copyright (c) 2013, Jiří Nápravník
  */
 
-class Common extends MacroSet
+class CommonMacros extends MacroSet
 {
 
 	public static function install(Compiler $compiler)
@@ -22,7 +22,7 @@ class Common extends MacroSet
 		$set->addMacro('confirm', NULL, NULL, array($set, 'macroConfirm'));
 		$set->addMacro('confirmModal', NULL, NULL, array($set, 'macroConfirmModal'));
 	}
-
+	
 	/**
 	 * n:confirm="..."
 	 */

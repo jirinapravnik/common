@@ -1,6 +1,6 @@
 <?php
 
-namespace JiriNapravnik\Component\FlashMessage;
+namespace JiriNapravnik\Components\FlashMessage;
 
 interface IFlashMessageFactory
 {
