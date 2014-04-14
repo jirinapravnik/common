@@ -37,6 +37,9 @@ class FormFactory
 		Container::extensionMethod('addDateInput', function (Container $container, $name, $label = NULL) {
 			return $container[$name] = new \JiriNapravnik\Form\Controls\DateInput($label);
 		});
+		Container::extensionMethod('addTextCaptcha', function (Container $container, $name, $label = NULL) {
+			return $container[$name] = new \JiriNapravnik\Form\Controls\TextCaptcha($label);
+		});
 	}
 
 	public function create()

@@ -49,7 +49,7 @@ class BaseEntity extends KdybyEntity
 		if ($values instanceof ArrayHash) {
 			$values = (array) $values;
 		}
-
+		
 		foreach ($values as $key => $value) {
 			if (is_string($value) && $value == '') {
 				unset($values[$key]);

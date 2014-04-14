@@ -62,6 +62,7 @@ class SequenceListener
 
 		$em = $event->getEntityManager();
 
+		//posouvam o jedno, ci-li v $newSequence je hodnota toho na ktere posouvam
 		$qb = $em->createQueryBuilder();
 		$qb->update(get_class($item), 'i')
 			->where('i.sequence = ' . $newSequence);

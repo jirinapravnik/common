@@ -28,7 +28,7 @@ class CommonMacros extends MacroSet
 	 */
 	public function macroConfirm(MacroNode $node, PhpWriter $writer)
 	{
-		return $writer->write('echo \'data-confirm="\' . %escape("' . $node->args . '") . \'"\' ');
+		return $writer->write('echo \' data-confirm="\' . %escape("' . $node->args . '") . \'"\' ');
 	}
 
 	/**
@@ -36,6 +36,6 @@ class CommonMacros extends MacroSet
 	 */
 	public function macroConfirmModal(MacroNode $node, PhpWriter $writer)
 	{
-		return $writer->write('echo \'data-confirm="modal" data-confirm-text="\' . %escape("' . $node->args . '") . \'"\' ');
+		return $writer->write('echo \' data-confirm="modal" data-confirm-text="\' . %escape("' . $node->args . '") . \'"\' ');
 	}
 }

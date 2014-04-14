@@ -42,6 +42,23 @@ class Common
 		return $date;
 	}
 
+	public static function dateTodayYesterday($date, $formatShort, $formatLong)
+	{
+		if (!$date instanceof DateTime) {
+			$date = new DateTime($date);
+		}
+		
+		$today = new DateTime('today');
+		$yesterday = new DateTime('yesterday');
+		if($date->format('Y-m-d') === $today->format('Y-m-d')){
+			return 'dnes ' . $date->format($formatShort);
+		} elseif($date->format('Y-m-d') === $yesterday->format('Y-m-d')){
+			return 'včera ' . $date->format($formatShort);
+		} else {
+			return $date->format($formatLong);
+		}
+	}
+
 	public static function czechHoliday($date, $format, $separator = ' - ')
 	{
 		if (!$date instanceof DateTime) {
@@ -58,7 +75,7 @@ class Common
 
 	public static function imageSize($imagePath)
 	{
-		if(!file_exists($imagePath)){
+		if (!file_exists($imagePath)) {
 			return \Nette\Utils\Html::el('strong', array('class' => 'red'))->setText('Soubor není umístěn na serveru!!');
 		}
 		list($w, $h) = getimagesize($imagePath);
