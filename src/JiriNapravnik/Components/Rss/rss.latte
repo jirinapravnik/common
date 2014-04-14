@@ -1,0 +1,31 @@
+{contentType application/rss+xml; charset=utf-8}
+<<?php ?>?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		{block #properties}
+		{foreach $channelProperties as $key => $property}
+			<{$key}>
+				{if is_array($property)}
+					{include #properties 'channelProperties' => $property}
+				{else}
+					{$property}
+				{/if}
+			</{$key}>
+		{/foreach}
+		{/block}
+
+		{foreach $items as $item}
+			<item>
+				{foreach $item as $key => $property}
+					{if $property !== NULL}
+						{ifset $property['attrs']}
+							<{$key}{foreach $property['attrs'] as $attrKey => $attr} {$attrKey}="{$attr}"{/foreach} />
+						{else}
+							<{$key}>{$property}</{$key}>
+						{/ifset}
+					{/if}
+				{/foreach}
+			</item>
+		{/foreach}
+	</channel>
+</rss>
