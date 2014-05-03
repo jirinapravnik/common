@@ -30,6 +30,8 @@ class VisualPaginator extends \Nette\Application\UI\Control
     /** @var Nette\Utils\Paginator */
     private $paginator;
 
+	private $templateFile;
+	
     /** @persistent */
     public $page = 1;
 	
@@ -37,7 +39,12 @@ class VisualPaginator extends \Nette\Application\UI\Control
 
 	public function __construct()
 	{
-		;
+		$this->templateFile = __DIR__ . '/visualPaginator.latte';
+	}
+	
+	public function setTemplateFile($templateFile)
+	{
+		$this->templateFile = $templateFile;
 	}
 	
     /**
@@ -89,7 +96,7 @@ class VisualPaginator extends \Nette\Application\UI\Control
         $this->template->paginator = $paginator;
 		$this->template->isThereEvents = (count($this->onShowPage) > 0) ? TRUE : FALSE;
 
-        $this->template->setFile(__DIR__ . '/visualPaginator.latte');
+        $this->template->setFile($this->templateFile);
         $this->template->render();
     }
 

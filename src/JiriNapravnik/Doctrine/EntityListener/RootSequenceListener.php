@@ -61,7 +61,7 @@ class RootSequenceListener
 			if ($oldSequence === $newSequence) {
 				return;
 			}
-
+			
 			$em = $event->getEntityManager();
 			
 			$qb = $em->createQueryBuilder();

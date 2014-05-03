@@ -11,14 +11,14 @@
 		{if $paginator->isFirst()}
 			<span class="button">« Předchozí</span>
 		{else}
-			<a n:href="$link, 'page' => $paginator->page - 1" class="ajax">« Předchozí</a>
+			<a n:href="$link, 'page' => $paginator->page - 1"n:class="$isThereEvents ? ajax">« Předchozí</a>
 		{/if}
 
 		{foreach $steps as $step}
 			{if $step == $paginator->page}
 				<span class="current">{$step}</span>
 			{else}
-				<a n:href="$link, 'page' => $step" class="ajax">{$step}</a>
+				<a n:href="$link, 'page' => $step" n:class="$isThereEvents ? ajax">{$step}</a>
 			{/if}
 			{if $iterator->nextValue > $step + 1}<span>…</span>{/if}
 		{/foreach}
@@ -26,7 +26,7 @@
 		{if $paginator->isLast()}
 			<span class="button">Další »</span>
 		{else}
-			<a n:href="$link, 'page' => $paginator->page + 1" class="ajax">Další »</a>
+			<a n:href="$link, 'page' => $paginator->page + 1" n:class="$isThereEvents ? ajax">Další »</a>
 		{/if}
 	</div>
 {/if}
