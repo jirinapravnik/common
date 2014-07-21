@@ -2,12 +2,10 @@
 
 namespace JiriNapravnik\Latte\Macros;
 
-use Nette\Latte\Compiler;
-use Nette\Latte\MacroNode;
-use Nette\Latte\Macros\MacroSet;
-use Nette\Latte\PhpWriter;
-use Nette\Latte\Token;
-use Nette\Reflection\ClassType;
+use Latte\Compiler;
+use Latte\MacroNode;
+use Latte\Macros\MacroSet;
+use Latte\PhpWriter;
 
 /*
  * Macros for latte
@@ -28,14 +26,16 @@ class FormMacros extends MacroSet
 	
 	public function macroFormBegin(MacroNode $node, PhpWriter $writer)
 	{
-		return $writer->write('$form = $__form = $_form = (is_object(%node.word) ? %node.word : $_control->getComponent(%node.word)); Nette\Latte\Macros\FormMacros::renderFormBegin($__form, %node.array);');
+		return $writer->write('if(!class_exists(\'Nette\Bridges\FormsLatte\FormMacros\')) class_alias(\'Nette\Bridges\FormsLatte\FormMacros\', \'Nette\Latte\Macros\FormMacros\');'
+			. '$form = $__form = $_form = (is_object(%node.word) ? %node.word : $_control->getComponent(%node.word)); Nette\Bridges\FormsLatte\FormMacros::renderFormBegin($__form, %node.array);');
 	}
 
 
 	public function macroFormEnd(MacroNode $node, PhpWriter $writer)
 	{
 
-		return $writer->write('Nette\Latte\Macros\FormMacros::renderFormEnd($__form)');
+		return $writer->write('if(!class_exists(\'Nette\Bridges\FormsLatte\FormMacros\'))class_alias(\'Nette\Bridges\FormsLatte\FormMacros\', \'Nette\Latte\Macros\FormMacros\');'
+			. 'Nette\Bridges\FormsLatte\FormMacros::renderFormEnd($__form)');
 	}
 	
 	public function macroPair(MacroNode $node, PhpWriter $writer)

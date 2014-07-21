@@ -1,0 +1,5 @@
+services:
+	classAnalyzer: Knp\DoctrineBehaviors\Reflection\ClassAnalyzer
+	translatable:
+		class: Knp\DoctrineBehaviors\ORM\Translatable\TranslatableListener(@classAnalyzer, FALSE, NULL, Knp\DoctrineBehaviors\Model\Translatable\Translatable, Knp\DoctrineBehaviors\Model\Translatable\Translation, LAZY, LAZY)
+		tags: [kdyby.subscriber]

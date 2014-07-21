@@ -2,10 +2,10 @@
 
 namespace JiriNapravnik\Latte\Macros;
 
-use Nette\Latte\Compiler;
-use Nette\Latte\MacroNode;
-use Nette\Latte\Macros\MacroSet;
-use Nette\Latte\PhpWriter;
+use Latte\Compiler;
+use Latte\MacroNode;
+use Latte\Macros\MacroSet;
+use Latte\PhpWriter;
 
 /*
  * Macros for latte

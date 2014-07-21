@@ -49,6 +49,7 @@ class Bs3FormRenderer extends \Nextras\Forms\Rendering\Bs3FormRenderer
 			$errors = '';
 			if ($mode === NULL) {
 				$errors = $this->renderAllErrors($form);
+				$form->cleanErrors();
 			}
 			return $errors . parent::render($form, $mode);
 		}
