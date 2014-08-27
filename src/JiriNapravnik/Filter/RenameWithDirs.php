@@ -41,16 +41,15 @@ class RenameWithDirs
 		$expl = explode('.', $explOriginal[count($explOriginal) - 1]);
 
 		$fileName = '';
-		if (is_NULL($fixNewName)) {
+		if ($fixNewName === NULL) {
 			for ($i = 0; $i < count($expl) - 1; $i++) {
 				$fileName .= $expl[$i] . '-';
 			}
 			$fileName .= str_shuffle(substr(md5(rand(0, time())), 0, 10));
+			$fileName .= '.' . $expl[count($expl) - 1];
 		} else {
 			$fileName = $fixNewName;
 		}
-
-		$fileName .= '.' . $expl[count($expl) - 1];
 
 		$this->newFileName = $actDir . strtolower($fileName);
 	}
