@@ -21,6 +21,12 @@ class Common
 		}
 	}
 
+	public static function dateLocalized($date)
+	{
+		$fmt = new \IntlDateFormatter(\Locale::getDefault(),\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT);
+		return $fmt->format($date);
+	}
+
 	public static function dateCzech($date, $format)
 	{
 		if (!$date instanceof DateTime) {
