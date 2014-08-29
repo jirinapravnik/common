@@ -14,7 +14,7 @@ class ModuleSettings extends Object
 		$this->parameters = $container->parameters;
 
 		$neon = new \Nette\DI\Config\Adapters\NeonAdapter();
-		$appSettings = $neon->load($this->parameters['appDir'] . '/AppModule/Config/app.settings.neon');
+		$appSettings = $neon->load($this->parameters['appDir'] . '/AppModule/config/app.settings.neon');
 		$appParams = $appSettings['common']['parameters'];
 		if ($this->parameters['environment'] === 'development') {
 			$appParams = array_replace_recursive($appParams, $appSettings['development']['parameters']);
