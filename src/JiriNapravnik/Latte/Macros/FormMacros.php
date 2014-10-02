@@ -40,12 +40,12 @@ class FormMacros extends MacroSet
 	
 	public function macroPair(MacroNode $node, PhpWriter $writer)
 	{
-		return $writer->write('$__form->render(\'pair\', $__form[%node.word])');
+		return $writer->write('$_form->render(\'pair\', $_form[%node.word])');
 	}
 	
 	public function macroContainer(MacroNode $node, PhpWriter $writer)
 	{
-		return $writer->write('$__form->render(\'container\', $__form[%node.word])');
+		return $writer->write('$_form->render(\'container\', $_form[%node.word])');
 	}
 	
 }
