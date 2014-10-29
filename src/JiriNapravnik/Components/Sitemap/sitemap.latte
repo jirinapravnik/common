@@ -1,0 +1,12 @@
+{contentType application/rss+xml; charset=utf-8}
+<<?php ?>?xml version="1.0"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	{foreach $urlsToSitemap as $url}
+		<url>
+				<loc>{$url['loc']}</loc>
+				<lastmod>{$url['lastmod']}</lastmod>
+				<changefreq>{$url['changefreq']}</changefreq>
+				<priority>{$url['priority']}</priority>
+		</url>
+	{/foreach}
+</urlset>
