@@ -30,7 +30,17 @@ class Sitemap extends Control
 		$i = 0;
 		$sitemapId = 1;
 		foreach ($items as $item) {
-			$this->addUrlToSitemap($item['loc'], $item['lastmod'], $item['changefreq'], $item['priority']);
+			$lastmod = $changefreq = $priority = NULL;
+			if(isset($item['lastmod'])){
+				$lastmod = $item['lastmod'];
+			}
+			if(isset($item['changefreq'])){
+				$changefreq = $item['changefreq'];
+			}
+			if(isset($item['priority'])){
+				$priority = $item['priority'];
+			}
+			$this->addUrlToSitemap($item['loc'], $lastmod, $changefreq, $priority);
 			$i++;
 			if ($i == self::MAX_URL) {
 				$this->saveSitemap($sitemapId);
@@ -64,7 +74,7 @@ class Sitemap extends Control
 		if (file_exists($fullFilename)) {
 			unlink($fullFilename);
 		}
-
+		
 		file_put_contents($fullFilename, $xmlToSave);
 		$this->urlsToSitemap = [];
 		$this->sitemapForSitemapIndex[] = [
@@ -96,12 +106,20 @@ class Sitemap extends Control
 
 	private function addUrlToSitemap($loc, $lastmod, $changefreq, $priority)
 	{
-		$this->urlsToSitemap[] = [
-			'loc' => $loc,
-			'lastmod' => $this->getCorrectDate($lastmod),
-			'changefreq' => $changefreq,
-			'priority' => $priority,
-		];
+		$url = [];
+		$url['loc'] = $loc;
+		
+		if($lastmod !== NULL){
+			$url['lastmod'] = $this->getCorrectDate($lastmod);
+		}
+		if($changefreq !== NULL){
+			$url['changeFreq'] = $changefreq;
+		}
+		if($priority !== NULL){
+			$url['priority'] = $priority;
+		}
+		
+		$this->urlsToSitemap[] = $url;
 	}
 
 	private function getCorrectDate($datetime)
