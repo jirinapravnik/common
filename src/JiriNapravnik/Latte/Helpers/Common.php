@@ -3,7 +3,10 @@
 namespace JiriNapravnik\Latte\Helpers;
 
 use DateTime;
+use IntlDateFormatter;
 use JiriNapravnik\Common\DateCzech;
+use Locale;
+use Nette\Utils\Html;
 
 /*
  * Helpers for latte
@@ -21,9 +24,18 @@ class Common
 		}
 	}
 
+	public static function nl2ul($text, $class){
+		if(strlen($text) === 0){
+			return;
+//			return Html::el('ul class="' . $class . '"');
+		}
+		$text = '<li>' . str_replace(["\r","\n\n","\n"], ['',"\n","</li>\n<li>"], trim($text, "\n\r")) . '</li>';
+		return Html::el('ul class="' . $class . '"')->setHtml($text);
+	}
+	
 	public static function dateLocalized($date)
 	{
-		$fmt = new \IntlDateFormatter(\Locale::getDefault(),\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT);
+		$fmt = new IntlDateFormatter(Locale::getDefault(),IntlDateFormatter::LONG, IntlDateFormatter::SHORT);
 		return $fmt->format($date);
 	}
 
@@ -48,6 +60,20 @@ class Common
 		return $date;
 	}
 
+	public static function weekdayInCzech($number){
+		$weekdays = [
+			1 => 'Pondělí',
+			2 => 'Úterý',
+			3 => 'Středa',
+			4 => 'Čtvrtek',
+			5 => 'Pátek',
+			6 => 'Sobota',
+			7 => 'Neděle',
+		];
+		
+		return $weekdays[$number];
+	}
+	
 	public static function dateTodayYesterday($date, $formatShort, $formatLong)
 	{
 		if (!$date instanceof DateTime) {
@@ -82,10 +108,16 @@ class Common
 	public static function imageSize($imagePath)
 	{
 		if (!file_exists($imagePath)) {
-			return \Nette\Utils\Html::el('strong', array('class' => 'red'))->setText('Soubor není umístěn na serveru!!');
+			return Html::el('strong', array('class' => 'red'))->setText('Soubor není umístěn na serveru!!');
 		}
 		list($w, $h) = getimagesize($imagePath);
 		return $w . 'x' . $h;
+	}
+	
+	public static function correctUrl($url){
+		$url = str_replace('http://', '', $url);
+		
+		return 'http://' . $url;
 	}
 
 	/**

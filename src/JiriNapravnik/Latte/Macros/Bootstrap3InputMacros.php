@@ -22,6 +22,9 @@ class Bootstrap3InputMacros extends BaseInputMacros
 		if ($label->getName() === 'label') {
 			$label->addClass('control-label');
 		}
+		if($control->isRequired()){
+			$label->addClass('required');
+		}
 
 		return $label;
 	}

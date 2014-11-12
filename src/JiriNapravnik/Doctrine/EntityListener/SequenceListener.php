@@ -16,7 +16,7 @@ class SequenceListener
 {
 
 	/**
-	 * @ORM\PrePersist 
+	 * @ORM\PostPersist 
 	 */
 	public function prePersist($item, LifecycleEventArgs $event)
 	{
@@ -30,7 +30,12 @@ class SequenceListener
 
 		$sequenceNext = (int) $maxSequence[1] + 1;
 
-		$item->setSequence($sequenceNext);
+		$em->createQuery('UPDATE ' . get_class($item) . ' i SET i.sequence = :sequence WHERE i.id = :id')
+			->setParameters([
+				'sequence' => $sequenceNext,
+				'id' => $item->getId()
+			])
+			->execute();
 	}
 
 	/**

@@ -36,6 +36,8 @@ class VisualPaginator extends \Nette\Application\UI\Control
     public $page = 1;
 	
 	public $onShowPage = array();
+	
+	private $steps = 2;
 
 	public function __construct()
 	{
@@ -63,6 +65,10 @@ class VisualPaginator extends \Nette\Application\UI\Control
 		$this->onShowPage($this, $page);
 	}
 	
+	public function setSteps($steps){
+		$this->steps = $steps;
+	}
+	
     /**
      * Renders paginator.
      * @param array $options
@@ -83,9 +89,10 @@ class VisualPaginator extends \Nette\Application\UI\Control
             $steps = array($page);
         } else {
             $arr = range(max($paginator->firstPage, $page - 3), min($paginator->lastPage, $page + 3));
+			
             $count = 4;
             $quotient = ($paginator->pageCount - 1) / $count;
-            for ($i = 0; $i <= $count; $i++) {
+            for ($i = ($count - $this->steps); $i <= $count; $i++) {
                 $arr[] = round($quotient * $i) + $paginator->firstPage;
             }
             sort($arr);
