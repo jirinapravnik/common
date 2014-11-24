@@ -58,12 +58,11 @@ class SequenceListener
 	 */
 	public function preUpdate($item, PreUpdateEventArgs $event)
 	{
-		$oldSequence = $event->getOldValue('sequence');
-		$newSequence = $event->getNewValue('sequence');
-
-		if ($oldSequence === $newSequence) {
+		if(!$event->hasChangedField('sequence')){
 			return;
 		}
+		$oldSequence = $event->getOldValue('sequence');
+		$newSequence = $event->getNewValue('sequence');
 
 		$em = $event->getEntityManager();
 
