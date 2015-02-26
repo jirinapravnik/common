@@ -34,6 +34,12 @@ class TablePrefixSubscriber implements EventSubscriber
 		foreach ($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
 			if ($mapping['type'] == ClassMetadataInfo::MANY_TO_MANY && isset($classMetadata->associationMappings[$fieldName]['joinTable']['name'])) {
 				$mappedTableName = $classMetadata->associationMappings[$fieldName]['joinTable']['name'];
+				
+				// Do not re-apply the prefix when the association is already prefixed
+				if (false !== strpos($mappedTableName, $this->prefix)) {
+					continue;
+				}
+				
 				$classMetadata->associationMappings[$fieldName]['joinTable']['name'] = $this->prefix . $mappedTableName;
 			}
 		}

@@ -42,10 +42,12 @@ class FormFactory
 		});
 	}
 
-	public function create()
+	public function create($class = 'form-horizontal')
 	{
 		$form = new Form();
-		$form->getElementPrototype()->addClass('form-horizontal');
+		if($class !== NULL){
+			$form->getElementPrototype()->addClass('form-horizontal');
+		}
 		$form->setRenderer(new \JiriNapravnik\Form\Bs3FormRenderer());
 
 		return $form;

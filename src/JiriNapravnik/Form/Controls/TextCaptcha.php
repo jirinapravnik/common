@@ -42,8 +42,11 @@ class TextCaptcha extends TextBase
 		$el = parent::getControl();
 		
 		$questionId = $this->session->getSection($this->sessionSection)->questionId;
-		$label = $this->questions[$questionId]['question'];
-		
+		if(isset($this->questions[$questionId]['question'])){
+			$label = $this->questions[$questionId]['question'];
+		} else {
+			$label = '';
+		}
 		return Html::el('label')->setText($label)->add($el);
 	}
 	

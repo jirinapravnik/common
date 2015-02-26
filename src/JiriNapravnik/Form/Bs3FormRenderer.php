@@ -33,7 +33,6 @@ class Bs3FormRenderer extends \Nextras\Forms\Rendering\Bs3FormRenderer
 	{
 		if ($this->form !== $form) {
 			$this->form = $form;
-			$this->init();
 		}
 
 		if ($mode === 'pair') {

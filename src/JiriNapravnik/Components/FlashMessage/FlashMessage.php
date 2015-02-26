@@ -15,8 +15,8 @@ class FlashMessage extends Control
 	public function render()
 	{
 		$this->template->flashes = $this->getParent()->getTemplate()->flashes;
-		$this->template->setFile(__DIR__ . '/flashMessage.latte');
-		$this->template->render();
+		
+		$this->template->render(__DIR__ . '/flashMessage.latte');
 	}
 
 }

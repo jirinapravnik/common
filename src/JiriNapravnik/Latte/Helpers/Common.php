@@ -23,7 +23,7 @@ class Common
 			return array(__CLASS__, $helper);
 		}
 	}
-
+	
 	public static function nl2ul($text, $class){
 		if(strlen($text) === 0){
 			return;
@@ -39,6 +39,11 @@ class Common
 		return $fmt->format($date);
 	}
 
+	public static function monthCzech($monthNumber){
+		$months = DateCzech::getCzechMonthsNumericKeys();
+		return $months[$monthNumber];
+	}
+	
 	public static function dateCzech($date, $format)
 	{
 		if (!$date instanceof DateTime) {
@@ -52,7 +57,7 @@ class Common
 			$date = str_replace($en, $cs, $date);
 		}
 
-		$months = DateCzech::getCzechMonths();
+		$months = DateCzech::getCzechMonthsNominativ();
 		foreach ($months as $en => $cs) {
 			$date = str_replace($en, $cs, $date);
 		}

@@ -68,7 +68,7 @@ class DateInput extends BaseControl
 		$yearsRange = range(date('Y'), date('Y') - 110);
 		$years = array('' => 'Rok') + array_combine($yearsRange, $yearsRange);
 
-		$monthsCzech = \JiriNapravnik\Common\DateCzech::getCzechMonthsNumericKeys();
+		$monthsCzech = \JiriNapravnik\Common\DateCzech::getCzechMonthsNominativNumericKeys();
 		$months = array('' => 'Měsíc');
 		for ($i = 1; $i <= 12; $i++) {
 			$months[$i] = $monthsCzech[$i];

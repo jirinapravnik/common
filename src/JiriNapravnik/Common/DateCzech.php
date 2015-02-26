@@ -25,8 +25,8 @@ class DateCzech
 
 		return $weekDays;
 	}
-
-	public static function getCzechMonths()
+	
+	public static function getCzechMonthsNominativ()
 	{
 		$months = array(
 			'January' => 'ledna', 'February' => 'února', 'March' => 'března',
@@ -39,7 +39,20 @@ class DateCzech
 		return $months;
 	}
 	
+
 	public static function getCzechMonthsNumericKeys()
+	{
+		$months = array(
+			1 => 'leden', 'únor', 'březen',
+			'duben', 'květen', 'červen',
+			'červenec', 'srpen', 'září',
+			'říjen', 'listopad', 'prosinec'
+		);
+
+		return $months;
+	}
+	
+	public static function getCzechMonthsNominativNumericKeys()
 	{
 		$months = array(
 			1 => 'ledna', 'února', 'března',

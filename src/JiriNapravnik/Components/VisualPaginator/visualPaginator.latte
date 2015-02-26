@@ -7,26 +7,30 @@
 {var $link = $isThereEvents ? 'showPage!' : 'this'}
 
 {if $paginator->pageCount > 1}
-	<div class="paginator">
-		{if $paginator->isFirst()}
-			<span class="button">« Předchozí</span>
-		{else}
-			<a n:href="$link, 'page' => $paginator->page - 1"n:class="$isThereEvents ? ajax">« Předchozí</a>
-		{/if}
-
+	<ul class="pagination">
+        <li n:if="!$paginator->first">
+			<a n:href="$link" n:class="$isThereEvents ? ajax"><span aria-hidden="true">‹</span>&nbsp;První</a>
+		</li>
+		<li n:if="!$paginator->first">
+			<a n:href="$link, 'page' => $paginator->page - 1"><span aria-hidden="true">‹</span><span class="sr-only">Předchozí</span></a>
+		</li>
 		{foreach $steps as $step}
 			{if $step == $paginator->page}
-				<span class="current">{$step}</span>
+				<li class="active">
+					<a href="#">{$step}</a>
+				</li>
 			{else}
-				<a n:href="$link, 'page' => $step" n:class="$isThereEvents ? ajax">{$step}</a>
+				<li>
+					<a n:href="$link, 'page' => $step" n:class="'default', $isThereEvents ? ajax">{$step}</a>
+				</li>
 			{/if}
-			{if $iterator->nextValue > $step + 1}<span>…</span>{/if}
-		{/foreach}
-
-		{if $paginator->isLast()}
-			<span class="button">Další »</span>
-		{else}
-			<a n:href="$link, 'page' => $paginator->page + 1" n:class="$isThereEvents ? ajax">Další »</a>
-		{/if}
-	</div>
+			{if $iterator->nextValue > $step + 1}<li><a href="#" class="default">…</a></li>{/if}
+			{/foreach}
+		<li n:if="!$paginator->last">
+			<a n:href="$link, 'page' => $paginator->page + 1"><span aria-hidden="true">›</span><span class="sr-only">Následující</span></a>
+		</li>
+		<li n:if="!$paginator->last">
+			<a n:href="$link, 'page' => $paginator->pageCount" n:class="$isThereEvents ? ajax">Poslední&nbsp;<span aria-hidden="true">›</span></a>
+		</li>
+    </ul>
 {/if}
