@@ -10,6 +10,9 @@
 
 namespace JiriNapravnik\Form;
 
+use JiriNapravnik\Form\Controls\AntispamControl;
+use JiriNapravnik\Form\Controls\DateInput;
+use JiriNapravnik\Form\Controls\TextCaptcha;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
 use Nextras\Forms\Controls;
@@ -19,6 +22,8 @@ class FormFactory
 
 	public function __construct()
 	{
+		AntispamControl::register();
+		
 		Container::extensionMethod('addOptionList', function (Container $container, $name, $label = NULL, array $items = NULL) {
 			return $container[$name] = new Controls\OptionList($label, $items);
 		});
@@ -35,20 +40,18 @@ class FormFactory
 			return $container[$name] = new Controls\Typeahead($label, $callback);
 		});
 		Container::extensionMethod('addDateInput', function (Container $container, $name, $label = NULL) {
-			return $container[$name] = new \JiriNapravnik\Form\Controls\DateInput($label);
+			return $container[$name] = new DateInput($label);
 		});
 		Container::extensionMethod('addTextCaptcha', function (Container $container, $name, $label = NULL) {
-			return $container[$name] = new \JiriNapravnik\Form\Controls\TextCaptcha($label);
+			return $container[$name] = new TextCaptcha($label);
 		});
 	}
 
-	public function create($class = 'form-horizontal')
+	public function create()
 	{
 		$form = new Form();
-		if($class !== NULL){
-			$form->getElementPrototype()->addClass('form-horizontal');
-		}
-		$form->setRenderer(new \JiriNapravnik\Form\Bs3FormRenderer());
+		$form->getElementPrototype()->addClass('form-horizontal');
+		$form->setRenderer(new Bs3FormRenderer());
 
 		return $form;
 	}
