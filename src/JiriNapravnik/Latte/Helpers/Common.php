@@ -79,7 +79,7 @@ class Common
 		return $weekdays[$number];
 	}
 	
-	public static function dateTodayYesterday($date, $formatShort, $formatLong)
+	public static function dateTodayYesterday($date, $formatShort = 'H:i', $formatLong = 'd.m. H:i')
 	{
 		if (!$date instanceof DateTime) {
 			$date = new DateTime($date);
