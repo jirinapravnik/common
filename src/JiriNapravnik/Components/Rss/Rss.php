@@ -113,8 +113,9 @@ class Rss extends Control
 		
 		if(isset($item['image'])){
 			$imgSize = getimagesize($item['image']);
+			$link = trim($this->getChannelProperty('link'), '/') . '/';
 			$item['enclosure']['attrs'] = [
-				'url' => $this->getChannelProperty('link') . $item['image'],
+				'url' => $link . $item['image'],
 				'type'=> $imgSize['mime'],
 				'length' => filesize($item['image'])
 			];
