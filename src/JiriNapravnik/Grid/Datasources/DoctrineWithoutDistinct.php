@@ -2,8 +2,8 @@
 
 namespace JiriNapravnik\Grid\Datasources;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Grido\DataSources\Doctrine;
+use JiriNapravnik\Doctrine\Tools\Pagination\PaginatorWithoutDistinct;
 
 /**
  * Grid Factory - set default language
@@ -11,7 +11,7 @@ use Grido\DataSources\Doctrine;
  * @author Jiří Nápravník (http://jirinapravnik.cz)
  * @copyright Copyright (c) 2013, Jiří Nápravník
  */
-class DoctrineWithAdditionalColumn extends Doctrine
+class DoctrineWithoutDistinct extends Doctrine
 {
 	public function getData()
 	{
@@ -20,7 +20,7 @@ class DoctrineWithAdditionalColumn extends Doctrine
 		$data = [];
 
 		if ($usePaginator) {
-			$paginator = new Paginator($this->getQuery(), $this->fetchJoinCollection);
+			$paginator = new PaginatorWithoutDistinct($this->getQuery(), $this->fetchJoinCollection);
 			$paginator->setUseOutputWalkers($this->useOutputWalkers);
 
 			// Convert paginator to the array
