@@ -32,7 +32,7 @@ class GedmoSubscriber extends Object implements Subscriber
 	public function onDaoCreate($em, $dao)
 	{
 		if($dao instanceof \JiriNapravnik\Gedmo\Tree\Entity\Repository\NestedTreeRepository){
-			$dao->setTreeListener($this->container->getService('gedmo.gedmo.treeable'));
+			$dao->setTreeListener($this->container->getByType('Gedmo\Tree\TreeListener'));
 		}
 	}
 }

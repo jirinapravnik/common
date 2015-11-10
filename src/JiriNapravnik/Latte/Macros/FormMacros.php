@@ -29,7 +29,7 @@ class FormMacros extends MacroSet
 	 * {label ...} and optionally {/label}
 	 * With css class 'required'
 	 */
-	public function macroLabel(NMacroNode $node, NPhpWriter $writer)
+	public function macroLabel(MacroNode $node, PhpWriter $writer)
 	{
 		$cmd = '
       $_input = is_object(%node.word) ? %node.word : $_form[%node.word];
