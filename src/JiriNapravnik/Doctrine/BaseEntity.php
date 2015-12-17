@@ -4,7 +4,6 @@ namespace JiriNapravnik\Doctrine;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
-use Kdyby\Doctrine\Entities\BaseEntity as KdybyEntity;
 use Nette\ArrayHash;
 use Nette\Http\FileUpload;
 use ReflectionClass;
@@ -17,8 +16,10 @@ use Zend\Stdlib\Hydrator;
  * @author Jiří Nápravník (http://jirinapravnik.cz)
  * @copyright Copyright (c) 2013, Jiří Nápravník
  */
-class BaseEntity extends KdybyEntity
+class BaseEntity
 {
+	use \Kdyby\Doctrine\Entities\MagicAccessors;
+	
 	public function extract()
 	{
 
