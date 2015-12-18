@@ -4,8 +4,8 @@ namespace JiriNapravnik\Doctrine\EventSubscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
-use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Kdyby\Doctrine\Events;
 
 /**
  * dcotrine event for table prefix

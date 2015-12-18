@@ -3,8 +3,8 @@
 namespace JiriNapravnik\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Tree\TreeListener;
 use JiriNapravnik\Gedmo\Tree\Entity\Repository\NestedTreeRepository;
+use JiriNapravnik\Gedmo\Tree\TreeListener;
 use Kdyby\Doctrine\RepositoryFactory as KdybyRepositoryFactory;
 use Nette\DI\Container;
 
