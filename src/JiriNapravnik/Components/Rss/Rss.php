@@ -111,13 +111,16 @@ class Rss extends Control
 			$item['pubDate'] = self::prepareDate($item['pubDate']);
 		}
 		
-		if(isset($item['image'])){
-			$imgSize = getimagesize($item['image']);
-			$link = trim($this->getChannelProperty('link'), '/') . '/';
+		if (isset($item['image'])) {
+			if (strpos($item['image'], 'http://') === FALSE) {
+				$item['image'] = trim($this->getChannelProperty('link'), '/') . '/' . $item['image'];
+			}
+			$imagePath = trim(parse_url($item['image'], PHP_URL_PATH), '/');
+			$imgSize = getimagesize($imagePath);
 			$item['enclosure']['attrs'] = [
-				'url' => $link . $item['image'],
+				'url' => $item['image'],
 				'type'=> $imgSize['mime'],
-				'length' => filesize($item['image'])
+				'length' => filesize($imagePath)
 			];
 			unset($item['image']);
 		}
