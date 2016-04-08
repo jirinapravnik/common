@@ -15,7 +15,6 @@ use JiriNapravnik\Form\Controls\DateInput;
 use JiriNapravnik\Form\Controls\TextCaptcha;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
-use Nextras\Forms\Controls;
 
 class FormFactory
 {
@@ -24,21 +23,6 @@ class FormFactory
 	{
 		AntispamControl::register();
 		
-		Container::extensionMethod('addOptionList', function (Container $container, $name, $label = NULL, array $items = NULL) {
-			return $container[$name] = new Controls\OptionList($label, $items);
-		});
-		Container::extensionMethod('addMultiOptionList', function (Container $container, $name, $label = NULL, array $items = NULL) {
-			return $container[$name] = new Controls\MultiOptionList($label, $items);
-		});
-		Container::extensionMethod('addDatePicker', function (Container $container, $name, $label = NULL) {
-			return $container[$name] = new Controls\DatePicker($label);
-		});
-		Container::extensionMethod('addDateTimePicker', function (Container $container, $name, $label = NULL) {
-			return $container[$name] = new Controls\DateTimePicker($label);
-		});
-		Container::extensionMethod('addTypeahead', function(Container $container, $name, $label = NULL, $callback = NULL) {
-			return $container[$name] = new Controls\Typeahead($label, $callback);
-		});
 		Container::extensionMethod('addDateInput', function (Container $container, $name, $label = NULL) {
 			return $container[$name] = new DateInput($label);
 		});
