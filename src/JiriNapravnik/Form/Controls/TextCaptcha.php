@@ -19,11 +19,13 @@ class TextCaptcha extends TextBase
 	private $session;
 	private $sessionSection;
 	
-	public function __construct($label = NULL)
+	public function setSession($session){
+		$this->session = $session;
+	}
+	
+	protected function attached($form)
 	{
-		parent::__construct($label);
-		
-		$this->session = Environment::getSession();
+		parent::attached($form);
 		
 		$this->sessionSection = $sessionSection = $this->getName() . 'textCaptcha';
 		

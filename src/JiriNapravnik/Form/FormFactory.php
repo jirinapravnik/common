@@ -15,19 +15,22 @@ use JiriNapravnik\Form\Controls\DateInput;
 use JiriNapravnik\Form\Controls\TextCaptcha;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
+use Nette\Http\Session;
 
 class FormFactory
 {
 
-	public function __construct()
+	public function __construct(Session $session)
 	{
 		AntispamControl::register();
 		
 		Container::extensionMethod('addDateInput', function (Container $container, $name, $label = NULL) {
 			return $container[$name] = new DateInput($label);
 		});
-		Container::extensionMethod('addTextCaptcha', function (Container $container, $name, $label = NULL) {
-			return $container[$name] = new TextCaptcha($label);
+		Container::extensionMethod('addTextCaptcha', function (Container $container, $name, $label = NULL)  use ($session){
+			$textCaptcha = new TextCaptcha($label);
+			$textCaptcha->setSession($session);
+			return $container[$name] = $textCaptcha;
 		});
 	}
 
