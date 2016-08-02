@@ -7,9 +7,9 @@
  * @copyright Copyright (c) 2014, Jiří Nápravník
  */
 
-namespace JiriNapravnik\DI;
+namespace JiriNapravnik\WebLoader\DI;
 
-class WebloaderFilesExtension extends \Nette\DI\CompilerExtension
+class WebLoaderFilesExtension extends \Nette\DI\CompilerExtension
 {
 
 	public function beforeCompile()
