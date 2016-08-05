@@ -16,7 +16,7 @@ class WebLoaderFilesExtension extends \Nette\DI\CompilerExtension
 	{
 		$webloader = $this->compiler->getExtensions('\WebLoader\Nette\Extension')['webloader'];
 		foreach ($this->compiler->getExtensions() as $extension) {
-			if ($extension instanceof \JiriNapravnik\DI\IWebloaderFilesProvider) {
+			if ($extension instanceof IWebLoaderFilesProvider) {
 				$assets = $extension->getWebloaderFiles();
 				foreach (['css', 'js'] as $assetsType) {
 					if (isset($assets[$assetsType])) {
