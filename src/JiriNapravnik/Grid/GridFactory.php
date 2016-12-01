@@ -4,6 +4,7 @@ namespace JiriNapravnik\Grid;
 
 use Grido\Components\Filters\Filter;
 use Grido\Grid;
+use Grido\Customization;
 
 /**
  * Grid Factory - set default language
@@ -23,18 +24,18 @@ class GridFactory
 		$grid = new Grid();
 		$grid->getTranslator()->setLang('cs');
 		$grid->setFilterRenderType(Filter::RENDER_INNER);
+		$grid->customization->useTemplateBootstrap();
 		
 		return $grid;
 	}
 
 	public function bootstrapModal($row, $htmlElement)
 	{
-		$htmlElement->attrs['data'] = array(
-			'confirm' => 'modal',
-			'confirm-text' => $htmlElement->attrs['data']['grido-confirm'],
-			'ajax' => 'on',
-		);
-		unset($htmlElement->attrs['data']['grido-confirm']);
+		$htmlElement->attrs['data-confirm'] = 'modal';
+		$htmlElement->attrs['data-confirm-text'] = $htmlElement->attrs['data-grido-confirm'];
+		$htmlElement->attrs['data-ajax'] = 'on';
+		
+		unset($htmlElement->attrs['data-grido-confirm']);
 		
 		return $htmlElement;
 	}
