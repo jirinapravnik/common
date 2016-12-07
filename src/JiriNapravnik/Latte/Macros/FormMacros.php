@@ -26,7 +26,7 @@ class FormMacros extends MacroSet
 //		$set->addMacro('form', array($set, 'macroFormBegin'), array($set, 'macroFormEnd'));
 		$set->addMacro('pair', array($set, 'macroPair'));
 		$set->addMacro('label', array($set, 'macroLabel'), array($set, 'macroLabelEnd'));
-//		$set->addMacro('container', array($set, 'macroContainer'));
+		$set->addMacro('container', array($set, 'macroContainer'));
 	}
 
 	/**

@@ -31,7 +31,6 @@ class Bs3FormRenderer extends \Nextras\Forms\Rendering\Bs3FormRenderer
 
 	public function render(Form $form, $mode = NULL, $control = NULL)
 	{
-		\Tracy\Debugger::barDump(func_get_args());
 		if ($this->form !== $form) {
 			$this->form = $form;
 		}

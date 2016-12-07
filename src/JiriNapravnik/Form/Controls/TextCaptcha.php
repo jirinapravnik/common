@@ -49,7 +49,7 @@ class TextCaptcha extends TextBase
 		} else {
 			$label = '';
 		}
-		return Html::el('label')->setText($label)->add($el);
+		return Html::el('label')->setText($label)->addHtml($el);
 	}
 	
 	public function validate()
