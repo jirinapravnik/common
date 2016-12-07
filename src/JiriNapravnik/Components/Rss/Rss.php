@@ -112,7 +112,7 @@ class Rss extends Control
 		}
 		
 		if (isset($item['image'])) {
-			if (strpos($item['image'], 'http://') === FALSE) {
+			if (strpos($item['image'], 'http://') === FALSE && strpos($item['image'], 'https://') === FALSE) {
 				$item['image'] = trim($this->getChannelProperty('link'), '/') . '/' . $item['image'];
 			}
 			$imagePath = trim(parse_url($item['image'], PHP_URL_PATH), '/');
