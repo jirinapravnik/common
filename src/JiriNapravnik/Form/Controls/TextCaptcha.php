@@ -56,7 +56,7 @@ class TextCaptcha extends TextBase
 	{
 		parent::validate();
 		
-		if($this->rules->validate() === TRUE){
+		if($this->getRules()->validate() === TRUE){
 			$this->session->getSection($this->sessionSection)->remove();
 		}
 	}
