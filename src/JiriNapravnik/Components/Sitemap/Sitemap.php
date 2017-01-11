@@ -12,17 +12,20 @@ class Sitemap extends Control
 
 	const MAX_URL = 10000;
 
-	private $urlToSitemap;
-	private $sitemapDir;
-	private $subdomain;
-	private $urlsToSitemap = [];
-	private $sitemapForSitemapIndex = [];
+	protected $urlToSitemap;
+	protected $sitemapDir;
+	protected $subdomain;
+	protected $urlsToSitemap = [];
 
 	public function __construct($urlToSitemap, $sitemapDir, $subdomain = NULL)
 	{
 		$this->urlToSitemap = $urlToSitemap;
 		$this->sitemapDir = $sitemapDir;
 		$this->subdomain = $subdomain;
+		
+		if(!is_dir($sitemapDir)){
+			mkdir($sitemapDir, 0777, TRUE);
+		}
 	}
 
 	public function generateSitemap($items)
@@ -55,7 +58,7 @@ class Sitemap extends Control
 		$this->saveSitemapIndex();
 	}
 
-	private function saveSitemap($sitemapId)
+	protected function saveSitemap($sitemapId)
 	{
 		$sitemapTemplate = new FileTemplate(__DIR__ . '/sitemap.latte');
 		$sitemapTemplate->registerFilter(new Engine);
@@ -77,31 +80,40 @@ class Sitemap extends Control
 		
 		file_put_contents($fullFilename, $xmlToSave);
 		$this->urlsToSitemap = [];
-		$this->sitemapForSitemapIndex[] = [
-			'loc' => $this->urlToSitemap . $filename,
-			'lastmod' => $this->getCorrectDate(filemtime($fullFilename)),
-		];
 	}
 
-	private function saveSitemapIndex()
-	{
+	protected function saveSitemapIndex()
+	{		
+		if($this->subdomain !== NULL){
+			$filenameSitemapIndex = 'sitemapIndex-' . $this->subdomain . '.xml';
+		} else {
+			$filenameSitemapIndex = 'sitemapIndex.xml';
+		}
+		if(file_exists($this->sitemapDir . $filenameSitemapIndex)){
+			unlink($this->sitemapDir . $filenameSitemapIndex);
+		}
+		
 		$sitemapIndexTemplate = new FileTemplate(__DIR__ . '/sitemapIndex.latte');
 		$sitemapIndexTemplate->registerFilter(new Engine);
 		$sitemapIndexTemplate->registerHelperLoader('\Nette\Templating\Helpers::loader');
-		$sitemapIndexTemplate->sitemapForSitemapIndex = $this->sitemapForSitemapIndex;
+		
+		$files = glob($this->sitemapDir . '/*');
+		
+		usort($files, function($a, $b){ 
+			return filemtime($b) - filemtime($a);
+		});
+		
+		$files = array_map(function($item){
+			return [
+				'loc' => $this->urlToSitemap . basename($item),
+				'lastmod' => $this->getCorrectDate(filemtime($item)),
+			];
+		}, $files);
+		
+		$sitemapIndexTemplate->sitemapForSitemapIndex = $files;
 		$xmlToSave = $sitemapIndexTemplate->__toString();
 
-		if($this->subdomain !== NULL){
-			$filename = 'sitemapIndex-' . $this->subdomain . '.xml';
-		} else {
-			$filename = 'sitemapIndex.xml';
-		}
-		
-		if (file_exists($filename)) {
-			unlink($filename);
-		}
-
-		file_put_contents($this->sitemapDir . $filename, $xmlToSave);
+		file_put_contents($this->sitemapDir . $filenameSitemapIndex, $xmlToSave);
 	}
 
 	private function addUrlToSitemap($loc, $lastmod, $changefreq, $priority)
@@ -122,7 +134,7 @@ class Sitemap extends Control
 		$this->urlsToSitemap[] = $url;
 	}
 
-	private function getCorrectDate($datetime)
+	protected function getCorrectDate($datetime)
 	{
 		if(is_string($datetime)){
 			$datetime = strtotime($datetime);
@@ -132,7 +144,7 @@ class Sitemap extends Control
 			$datetime = new DateTime;
 			$datetime->setTimestamp($timestamp);
 		}
-		return $datetime->format('Y-m-d');
+		return $datetime->format(DateTime::ISO8601);
 	}
 
 }
