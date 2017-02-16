@@ -20,7 +20,7 @@ class BaseEntity
 {
 	use \Kdyby\Doctrine\Entities\MagicAccessors;
 	
-	public function extract()
+	public function extract(array $exclude = [])
 	{
 
 		$reflection = new ReflectionClass($this);
@@ -29,9 +29,9 @@ class BaseEntity
 			if (!$property->isStatic()) {
 				$value = $this->{$property->getName()};
 
-				if ($value instanceof BaseEntity) {
+				if (!in_array($property->getName(), $exclude) && $value instanceof BaseEntity) {
 					$value = $value->getId();
-				} elseif ($value instanceof ArrayCollection || $value instanceof PersistentCollection) {
+				} elseif (!in_array($property->getName(), $exclude) && ($value instanceof ArrayCollection || $value instanceof PersistentCollection)) {
 					$value = array_map(function (BaseEntity $entity) {
 						return $entity->getId();
 					}, $value->toArray());
