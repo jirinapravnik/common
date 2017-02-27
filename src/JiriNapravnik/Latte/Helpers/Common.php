@@ -119,10 +119,12 @@ class Common
 		return $w . 'x' . $h;
 	}
 
-	public static function correctUrl($url){
-		$url = str_replace('http://', '', $url);
-
-		return 'http://' . $url;
+	public function correctUrl($url){
+		if(strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0){
+			return $url;
+		} else{
+			return 'http://' . $url;
+		}
 	}
 
 	/**
