@@ -60,9 +60,9 @@ class Sitemap extends Control
 
 	protected function saveSitemap($sitemapId)
 	{
-		$sitemapTemplate = new FileTemplate(__DIR__ . '/sitemap.latte');
-		$sitemapTemplate->registerFilter(new Engine);
-		$sitemapTemplate->registerHelperLoader('\Nette\Templating\Helpers::loader');
+		$latte = new \Latte\Engine;
+		$sitemapTemplate = new \Nette\Bridges\ApplicationLatte\Template($latte);
+		$sitemapTemplate->setFile(__DIR__ . '/sitemap.latte');
 		$sitemapTemplate->urlsToSitemap = $this->urlsToSitemap;
 		$xmlToSave = $sitemapTemplate->__toString();
 
