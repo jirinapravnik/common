@@ -17,7 +17,8 @@ class DateInput extends BaseControl
 	public function __construct($label = NULL)
 	{
 		parent::__construct($label);
-		$this->addRule(__CLASS__ . '::validateDate', 'Neexistující datum.');
+		$this->setRequired(FALSE)
+			->addRule(__CLASS__ . '::validateDate', 'Neexistující datum.');
 	}
 
 	public function setValue($value)
@@ -77,17 +78,17 @@ class DateInput extends BaseControl
 		$name = $this->getHtmlName();
 
 		return Html::el()
-				->add(Helpers::createSelectBox(
+				->addHtml(Helpers::createSelectBox(
 						$days, array('selected?' => $this->day)
 					)->name($name . '[day]')
 					->class('form-control day')
 				)
-				->add(Helpers::createSelectBox(
+				->addHtml(Helpers::createSelectBox(
 						$months, array('selected?' => $this->month)
 					)->name($name . '[month]')
 					->class('form-control month')
 				)
-				->add(Helpers::createSelectBox(
+				->addHtml(Helpers::createSelectBox(
 						$years, array('selected?' => $this->year)
 					)->name($name . '[year]')
 					->class('form-control year')
