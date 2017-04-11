@@ -93,9 +93,9 @@ class Sitemap extends Control
 			unlink($this->sitemapDir . $filenameSitemapIndex);
 		}
 		
-		$sitemapIndexTemplate = new FileTemplate(__DIR__ . '/sitemapIndex.latte');
-		$sitemapIndexTemplate->registerFilter(new Engine);
-		$sitemapIndexTemplate->registerHelperLoader('\Nette\Templating\Helpers::loader');
+		$latte = new \Latte\Engine;
+		$sitemapIndexTemplate = new \Nette\Bridges\ApplicationLatte\Template($latte);
+		$sitemapIndexTemplate->setFile(__DIR__ . '/sitemapIndex.latte');
 		
 		$files = glob($this->sitemapDir . '/*');
 		
