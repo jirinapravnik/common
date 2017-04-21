@@ -29,7 +29,7 @@ class TextCaptcha extends TextBase
 		
 		$this->sessionSection = $sessionSection = $this->getName() . 'textCaptcha';
 		
-		if($this->session->hasSection($sessionSection) && $this->session->getSection($sessionSection)->questionId > 0){
+		if($this->session->hasSection($sessionSection) && isset($this->session->getSection($sessionSection)->questionId)){
 			$questionId = $this->session->getSection($sessionSection)->questionId;
 		} else {
 			$this->session->getSection($sessionSection)->questionId = $questionId = rand(0, count($this->questions) - 1);
