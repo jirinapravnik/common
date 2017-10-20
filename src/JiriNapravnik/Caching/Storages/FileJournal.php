@@ -466,8 +466,14 @@ class FileJournal extends Nette\Object implements IJournal
 	 * @param  array
 	 * @return array of merged items
 	 */
-	private function mergeIndexData(array $data)
+	private function mergeIndexData($data)
 	{
+		if(!is_array($data)){ //puvodne byl array jako parametr type, ale to nekdy blblo, tak musime smazat ten btfj
+			unlink($this->file);
+			\Tracy\Debugger::log('filejournal - smazan');
+			return [];
+		}
+		
 		while (isset($data[self::INDEX_DATA])) {
 			$id = $data[self::INDEX_DATA];
 			unset($data[self::INDEX_DATA]);
