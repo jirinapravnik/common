@@ -38,4 +38,9 @@ class NestedTreeRepository extends \Gedmo\Tree\Entity\Repository\NestedTreeRepos
 		$this->repoUtils = new RepositoryUtils($this->_em, $this->getClassMetadata(), $this->listener, $this);
 	}
 
+    public function createNew()
+    {
+        $className = $this->getClassName();
+        return new $className;
+    }
 }
