@@ -43,6 +43,12 @@ class Common implements IHelperProvider
 		
 		return 'http://' . $url;
 	}
+
+    public function phoneLink($phone){
+        return Html::el('a')
+            ->href('tel:' . $phone)
+            ->setText($phone);
+    }
 	
 	public function hideIpPart($ip, $hideParts = 1){
 		$expl = explode('.', $ip);
@@ -71,5 +77,8 @@ class Common implements IHelperProvider
 		$engine->addFilter('hideIpPart', function($ip, $hideParts = 1){
 			return $this->hideIpPart($ip, $hideParts);
 		});
+        $engine->addFilter('phoneLink', function($phone){
+            return $this->phoneLink($phone);
+        });
 	}
 }

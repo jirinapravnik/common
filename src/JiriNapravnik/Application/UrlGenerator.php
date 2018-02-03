@@ -12,7 +12,7 @@ use Nette\Object;
  * @author David Matějka
  * @author David Grudl
  */
-class UrlGenerator extends Object
+class UrlGenerator
 {
 
 	/** @var IRouter */

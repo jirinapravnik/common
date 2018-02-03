@@ -2,9 +2,7 @@
 
 namespace JiriNapravnik\Grid;
 
-use Grido\Components\Filters\Filter;
-use Grido\Grid;
-use Grido\Customization;
+use Ublaboo\DataGrid\DataGrid;
 
 /**
  * Grid Factory - set default language
@@ -17,14 +15,13 @@ class GridFactory
 
 	/**
 	 * 
-	 * @return \Grido\Grid
+	 * @return DataGrid
 	 */
 	public function create()
 	{
-		$grid = new Grid();
-		$grid->getTranslator()->setLang('cs');
-		$grid->setFilterRenderType(Filter::RENDER_INNER);
-		$grid->customization->useTemplateBootstrap();
+		$grid = new DataGrid();
+		$grid->setRememberState(false);
+		$grid->setRefreshUrl(false);
 		
 		return $grid;
 	}
