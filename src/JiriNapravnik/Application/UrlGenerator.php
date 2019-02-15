@@ -6,7 +6,6 @@ use Nette\Application\IRouter;
 use Nette\Application;
 use Nette\Http\Url;
 use Nette\Http\Request;
-use Nette\Object;
 
 /**
  * @author David Matějka
