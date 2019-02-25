@@ -17,7 +17,7 @@
 namespace JiriNapravnik\Components\Rss;
 
 use Nette\Application\UI\Control;
-use Nette\DateTime;
+use Nette\Utils\DateTime;
 use Nette\InvalidStateException;
 use Nette\Utils\Html;
 
