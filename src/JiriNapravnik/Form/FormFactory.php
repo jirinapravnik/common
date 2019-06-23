@@ -38,7 +38,7 @@ class FormFactory
 	{
 		$form = new Form();
 		$form->getElementPrototype()->addClass('form-horizontal');
-		$form->setRenderer(new Bs3FormRenderer());
+		$form->setRenderer(new Bs4FormRenderer());
 
 		return $form;
 	}

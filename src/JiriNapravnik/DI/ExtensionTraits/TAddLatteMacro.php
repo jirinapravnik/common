@@ -7,7 +7,7 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\ContainerBuilder;
 use Nette\Utils\Validators;
 
-trait TAddLateMacro
+trait TAddLatteMacro
 {
 
 	public function addLatteMacro(string $macro): void

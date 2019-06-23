@@ -18,7 +18,6 @@ use Zend\Stdlib\Hydrator;
  */
 class BaseEntity
 {
-	use \Kdyby\Doctrine\Entities\MagicAccessors;
 	use HydrateExtractEntityTrait;
 
 }

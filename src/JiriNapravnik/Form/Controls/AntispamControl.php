@@ -74,10 +74,7 @@ class AntispamControl extends TextInput
 
 
 
-	/**
-	 * @return TextInput
-	 */
-	public function getControl()
+	public function getControl(): Html
 	{
 		$control = parent::getControl();
 		

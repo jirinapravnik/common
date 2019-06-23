@@ -7,7 +7,7 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\ContainerBuilder;
 use Nette\Utils\Validators;
 
-trait TAddLateFilterClass
+trait TAddLatteFilterClass
 {
 
 	public function addLatteFilterClass(string $helperClass): void
