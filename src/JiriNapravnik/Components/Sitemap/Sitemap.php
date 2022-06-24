@@ -97,7 +97,11 @@ class Sitemap extends Control
 		$sitemapIndexTemplate = new \Nette\Bridges\ApplicationLatte\Template($latte);
 		$sitemapIndexTemplate->setFile(__DIR__ . '/sitemapIndex.latte');
 		
-		$files = glob($this->sitemapDir . '/*');
+		$pattern = '/*';
+		if($this->subdomain !== null){
+			$pattern .= '-' . $this->subdomain . '-*.xml';
+		}
+		$files = glob($this->sitemapDir . $pattern);
 		
 		usort($files, function($a, $b){ 
 			return filemtime($b) - filemtime($a);
